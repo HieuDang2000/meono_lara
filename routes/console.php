@@ -2,12 +2,12 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
-use App\Events\TestWS;
+use App\Events\TestWSPublic;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Artisan::command('test-ws', function () {
-    TestWS::dispatch("Hello World");
-})->purpose('Test WS');
+Artisan::command('ws:public', function () {
+    TestWSPublic::dispatch("Hello World Public");
+})->purpose('Test WS Public');

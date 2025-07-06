@@ -10,14 +10,14 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class TestWS implements ShouldBroadcast
+class TestWSPublic implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public string $message = "Hello World")
+    public function __construct(public string $message = "Hello World Public")
     {
         //
     }
@@ -30,7 +30,12 @@ class TestWS implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('test-ws'),
+            new Channel('test-ws-public'),
         ];
+    }
+
+    public function broadcastAs(): string
+    {
+        return 'TestWSPublic';
     }
 }
